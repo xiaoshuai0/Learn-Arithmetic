@@ -386,6 +386,107 @@ list.insert("Python", atIndex: 1)
 list.printAllNodes()
 ```
 
+#### 数组, 链表, 哈希表对比:
+* 数组:
+    * 优点:
+        1. 数组的主要优点是根据下标值访问效率会很高
+        2. 比较好的方式是先对数组进行排序, 再进行二分查找
+    * 缺点:
+        1. 需要先对数组进行排序, 生成有序数组, 才能提高查找效率
+        2. 另外数组在插入和删除数据时, 需要有大量的位移操作(插入到首位或者中间位置的时候), 效率很低
+* 链表
+    * 优点:
+        1. 链表的插入和删除操作效率都很高
+    * 缺点:
+        1. 查找效率很低, 需要从头开始依次访问链表中的每个数据项, 直到找到
+* 哈希表
+    * 优点:
+        1. 哈希表的插入/查询/删除效率都是非常高
+    * 缺点:
+        1. 空间利用率不高, 底层使用的是数组
+        2. 哈希表中的元素是无序的, 不能按照固定的顺序来遍历哈希表中的元素
+        3. 不能快速的找出哈希表中的最大值或者最小值这些特殊的值 
+
+#### 树
+![树结构图](https://upload-images.jianshu.io/upload_images/1102036-b7548b9afa78655e?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+##### 树的术语
+1. 节点的度(Degree): 节点的子树个数
+2. 树的度: 树的所有结点中最大的度数. (树的度通常为结点的个数N-1)
+3. 叶结点（Leaf）：度为0的结点. (也称为叶子结点)
+4. 父结点（Parent）：有子树的结点是其子树的根结点
+5. 子结点（Child）：若A结点是B结点的父结点，则称B结点是A结点的子结点；子结点也称孩子结点
+6. 兄弟结点（Sibling）：具有同一父结点的各结点彼此是兄弟结点
+7. 路径和路径长度：从结点n1到nk的路径为一个结点序列n1 , n2,… , nk, ni是 ni+1的父结点。路径所包含边的个数为路径的长度
+8. 结点的层次（Level）：规定根结点在1层，其它任一结点的层数是其父结点的层数加1
+9. 树的深度（Depth）：树中所有结点中的最大层次是这棵树的深度
+
+##### 二叉树
+> 如果树中每个节点最多只能有两个子节点, 这样的树就成为"二叉树". 
+
+
+![二叉树的五种形态](https://upload-images.jianshu.io/upload_images/1102036-3422b18b70bba173?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+###### 二叉树的特性
+1. 一个二叉树第 i 层的最大结点数为：2^(i-1), i >= 1
+2. 深度为k的二叉树有最大结点总数为:： 2^k - 1, k >= 1
+3. 对任何非空二叉树 T，若n0表示叶结点的个数、n2是度为2的非叶结点个数，那么两者满足关系n0 = n2 + 1
+![](https://upload-images.jianshu.io/upload_images/1102036-ec1fb08857229061?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+###### 特殊的二叉树
+* 完美二叉树(Perfect Binary Tree) , 也称为满二叉树(Full Binary Tree）
+    * 在二叉树中, 除了最下一层的叶结点外, 每层节点都有2个子结点, 就构成了满二叉树
+    ![](https://upload-images.jianshu.io/upload_images/1102036-c7b0ef2b456f26af?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+* 完全二叉树(Complete Binary Tree)
+    * 除二叉树最后一层外, 其他各层的节点数都达到最大个数
+    * 且最后一层从左向右的叶结点连续存在, 只缺右侧若干节点
+    * 完美二叉树是特殊的完全二叉树
+    
+    > 下面不是完全二叉树, 因为D节点还没有右结点, 但是E节点就有了左右节点
+    ![](https://upload-images.jianshu.io/upload_images/1102036-b89f4639a1e557ce?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+    
+###### 二叉树存储
+> 二叉树的存储常见的方式是数组和链表
+
+* 数组
+    * 完全二叉树: 按从上至下、从左到右顺序存储
+    ![](https://upload-images.jianshu.io/upload_images/1102036-47e375d88635b261?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+    * 非完全二叉树:非完全二叉树要转成完全二叉树才可以按照上面的方案存储, 会造成很大的空间浪费
+    ![](https://upload-images.jianshu.io/upload_images/1102036-5b6e9fa75d230845?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+* 链表
+
+    > 二叉树最常见的方式还是使用链表存储, 每个结点封装成一个Node, Node中包含存储的数据, 左结点的引用, 右结点的引用
+    
+    ![](https://upload-images.jianshu.io/upload_images/1102036-aa7d77c007778c1b?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+###### 什么是二叉搜索树
+> 二叉搜索树（BST，Binary Search Tree），也称二叉排序树或二叉查找树
+> 二叉搜索树是一颗二叉树, 可以为空；如果不为空，满足以下性质
+>  
+> * 非空左子树的所有键值小于其根结点的键值
+> * 非空右子树的所有键值大于其根结点的键值
+> * 左、右子树本身也都是二叉搜索树
+
+![](https://upload-images.jianshu.io/upload_images/1102036-714d0fc1bc2a866e?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+###### 二叉搜索树的特点:
+> 二叉搜索树的特点就是相对较小的值总是保存在左结点上, 相对较大的值总是保存在右结点上
+
+###### 二叉搜索树的操作
+* ``` insert(key) ```:向树中插入一个新的键
+* ``` search(key) ```:在树中查找一个键，如果结点存在，则返回true；如果不存在，则返回false
+* ``` inOrderTraverse ```: 通过中序遍历方式遍历所有结点
+* ``` preOrderTraverse ```:通过先序遍历方式遍历所有结点
+* ```postOrderTraverse ```:通过后序遍历方式遍历所有结点
+* ``` min ```:返回树中最小的值/键
+* ``` max ```:返回树中最大的值/键
+* ``` remove(key) ```:从树中移除key
+###### 搜索二叉树的实现
+
+ 
+
+
+
+
 
 
 
