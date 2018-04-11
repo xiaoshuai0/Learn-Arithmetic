@@ -481,6 +481,300 @@ list.printAllNodes()
 * ``` max ```:返回树中最大的值/键
 * ``` remove(key) ```:从树中移除key
 ###### 搜索二叉树的实现
+1. 首先定义一个节点类
+
+     ```
+     public class Node {
+        
+        //value of a node
+        var key: Int
+        
+        //pointer to previous node
+        var left: Node?
+        
+        //pointer to next node
+        var right: Node?
+        
+        
+        //init
+        public init(key: Int) {
+            self.key = key
+        }
+    }
+ ```
+ 2. 定义一个搜索二叉树类, 声明一个root属性,只要有根节点就能找到所有的子节点
+    
+        ```
+        public class BinarySerachTree{
+            /** root node*/
+            var root: Node?
+        }
+        ```
+        
+ 3. 向树中插入数据
+
+        ```
+        /** insert a node*/
+    func insert(key: Int) {
+        let newNode = Node(key: key)
+        if let root = root {
+            insertNode(node: root, newNode: newNode)
+        } else {
+            root = newNode
+        }
+    }
+    private func insertNode(node: Node, newNode: Node) {
+        if node.key > newNode.key {
+            if let left = node.left  {
+                insertNode(node: left, newNode: newNode)
+            } else {
+                node.left = newNode
+            }
+        } else {
+            if let right = node.right {
+                insertNode(node: right, newNode: newNode)
+            } else {
+                node.right = newNode
+            }
+        }
+    }
+        ```
+ 4. 先序遍历
+  
+      ```
+      /** 先序遍历
+         *  1.访问根节点
+         *  2.先序遍历左子树
+         *  3.先序遍历右子树
+         */
+        func preOrderTraversal() {
+            preOrderTranversalNode(node: root) { (key) in
+                print(key)
+            }
+        }
+        
+        private func preOrderTranversalNode(node: Node?, handle: (_ key: Int) -> Void) {
+            if let node = node  {
+                handle(node.key)
+                preOrderTranversalNode(node: node.left, handle: handle)
+                preOrderTranversalNode(node: node.right, handle: handle)
+            }
+        }
+      ```
+ 5. 中序遍历
+ 
+     ```
+     /** 中序遍历
+         *  1.中序遍历其左子树
+         *  2.访问根节点
+         *  3.中序遍历其右子树
+         */
+        func inOrderTraversal() {
+            inOrderTraversalNode(node: root) { (key) in
+                print(key)
+            }
+        }
+        
+        private func inOrderTraversalNode(node: Node?, handle:(_ key: Int) -> Void) {
+            if let node = node {
+                inOrderTraversalNode(node: node.left, handle: handle)
+                handle(node.key)
+                inOrderTraversalNode(node: node.right, handle: handle)
+            }
+        }
+     ```
+ 6. 后序遍历
+ 
+     ```
+     /** 后续遍历
+         *  1. 后序遍历其左子树
+         *  2. 后序遍历其右子树
+         *  3. 访问根节点
+         */
+        func postOrderTraversal() {
+            postOrderTraversalNode(node: root) { (key) in
+                print(key)
+            }
+        }
+        
+        private func postOrderTraversalNode(node: Node?, handle:(_ key: Int) -> Void) {
+            if let node = node {
+                postOrderTraversalNode(node: node.left, handle: handle)
+                postOrderTraversalNode(node: node.right, handle: handle)
+                handle(node.key)
+            }
+            
+        }
+     ```
+ 7. 最大自和最小值
+  ![](https://upload-images.jianshu.io/upload_images/1102036-f9f5d3c4afaeead6?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+  
+      ```
+      var min: Int? {
+            var node = root
+            while node?.left != nil {
+                node = node?.left
+            }
+            return node?.key
+        }
+        
+        var max: Int? {
+            var node = root
+            while node?.right != nil {
+                node = node?.right
+            }
+            return node?.key
+        }
+      ```
+ 8. 搜索特定的值        
+     * 递归实现
+     
+         ```
+         func searck(key: Int) -> Bool {
+            return searchNode(node: root, key: key)
+        }
+        /** 递归实现*/
+        private func searchNode(node: Node?, key: Int) -> Bool {
+            guard let node = node else {
+                return false
+            }
+            
+            if node.key > key {
+                return searchNode(node: node.left, key: key)
+            } else if node.key < key {
+                return searchNode(node: node.right, key: key)
+            } else {
+                return true
+            }
+        }
+         ```
+        *  循环实现
+        
+            ```
+            /** 循环实现*/
+        private func searchNode_while(key: Int) -> Bool {
+            var node = root
+            while node != nil {
+                if node!.key > key {
+                    node = node?.left
+                } else if node!.key < key{
+                    node = node?.right
+                } else {
+                    return true
+                }
+            }
+            return false
+        }
+            ```
+ 9. 二叉树删除
+    
+        ```
+        /** 二叉树删除
+         *  1.节点为叶子节点(没有子节点)
+         *  2.节点有一个子节点
+         *  3.节点有俩个子节点
+         */
+        func remove(key: Int) -> Bool {
+            guard root == nil else {
+                return false
+            }
+            //1. 定义中间变量
+            var current: Node? = root!
+            var parent = root!
+            var isLeftChild = true
+            
+            //2.开始查找子节点
+            while current!.key != key {
+                parent = current!
+                if key < current!.key {
+                    isLeftChild = true
+                    current = current?.left
+                } else {
+                    isLeftChild = false
+                    current = current?.right
+                }
+                
+                if current == nil {//如果发现current已经指向nil, 那么说明没有找到要删除的数据
+                    return false
+                }
+            }
+            //3.删除的节点是叶子节点
+            if current?.left == nil && current?.right == nil {
+                if current?.key == root?.key {
+                    root = nil
+                } else if isLeftChild {
+                    parent.left = nil
+                } else {
+                    parent.right = nil
+                }
+            } else if (current?.right == nil) {//4.删除有一个左子节点的节点
+                if current?.key == root?.key {
+                    root = current?.left
+                } else if isLeftChild {
+                    parent.left = current?.left
+                } else {
+                    parent.right = current?.left
+                }
+            } else if (current?.left == nil) {//4.删除有一个右子节点的节点
+                if current?.key == root?.key {
+                    root = current?.right
+                } else if isLeftChild {
+                    parent.left = current?.right
+                } else {
+                    parent.right = current?.right
+                }
+            } else {//两种实现方式, 找前驱和后继
+                let successor = getSuccessor(node: current!)
+                if current?.key == root?.key {
+                    root = successor
+                } else if isLeftChild {
+                    parent.left = successor
+                } else {
+                    parent.right = successor
+                }
+                successor.left = current?.left
+            }
+            
+            return true
+        }
+        //找后继
+        private func getSuccessor(node: Node) -> Node {
+            var successorParent:Node = node
+            var successor: Node = node
+            var current = node.right
+            
+            while current != nil {
+                successorParent = successor
+                successor = current!
+                current = current?.left
+            }
+            
+            if successor.key != node.right?.key {
+                successorParent.left = successor.right
+                successor.right = node.right
+            }
+            return successor
+        }
+        //找前驱
+        private func getPrecursor(node: Node) -> Node {
+            var precursorParent: Node = node
+            var precursor: Node = node
+            var current = node.left
+            while current != nil {
+                precursorParent = precursor
+                precursor = current!
+                current = current?.right
+            }
+            if precursor.key != node.left?.key {
+                precursorParent.right = precursor.left
+                precursor.left = node.left
+            }
+            return precursor
+        }
+        ```
+        
+###### 
+
 
  
 
