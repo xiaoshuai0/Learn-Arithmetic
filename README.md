@@ -774,6 +774,89 @@ list.printAllNodes()
         ```
         
 ###### 
+# 排序
+#### 冒泡排序
+```
+var array = [3, 6, 4, 2, 11, 10, 5]
+/** 冒泡排序*/
+func bubbleSort(array: [Int]) -> [Int] {
+    var result = array
+    for i in (0..<result.count).reversed() {
+        for j in 0..<i {
+            if result[j] > result[j+1] {
+                (result[j], result[j+1]) = (result[j+1], result[j])
+            }
+        }
+    }
+    return result
+}
+
+bubbleSort(array: array)
+```
+#### 选择排序
+```
+/** 选择排序*/
+func selectionSort(array: [Int]) -> [Int] {
+    var result = array
+    for i in 0..<result.count - 1 {
+        var min = i + 1
+        for j in min..<result.count {
+            if result[min] > result[j] {
+                min = j
+            }
+        }
+        (result[min], result[i]) = (result[i], result[min])
+    }
+    return result
+}
+
+selectionSort(array: array)
+```
+#### 插入排序
+```
+/** 插入排序*/
+func insertionSort(array: [Int]) -> [Int] {
+    var result = array
+    for i in 1..<result.count {
+        var j = i
+        let temp = result[j]
+        while j > 0 && result[j-1] > temp {
+            result[j] = result[j - 1]
+            j -= 1
+        }
+        result[j] = temp
+    }
+    return result
+}
+
+insertionSort(array: array)
+
+```
+#### 希尔排序
+```
+/** 希尔排序呢*/
+func shellSort(array: [Int]) -> [Int] {
+    var result = array
+    let length = array.count
+    var gap = lrintf(Float(length) / 2)
+    while gap > 0 {
+        for i in gap..<length {
+            var j = i
+            let temp = result[i]
+            while j > gap - 1 && result[j - gap] > temp {
+                result[j] = result[j - gap]
+                j -= gap
+            }
+            result[j] = temp
+        }
+        gap = lrintf(Float(gap) / 2)
+    }
+    return result
+}
+shellSort(array: array)
+```
+
+
 
 
  
