@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b9758e-4049-44db-be8e-88187bc31301" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Offer/sortDemo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Offer/stackDemo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Offer/sortDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Offer/sortDemo.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,8 +68,8 @@
       <file leaf-file-name="sortDemo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Offer/sortDemo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state relative-caret-position="498">
+              <caret line="70" column="67" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="70" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -78,7 +77,7 @@
       <file leaf-file-name="twoSum.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Offer/twoSum.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
+            <state relative-caret-position="720">
               <caret line="48" selection-start-line="48" selection-end-line="48" selection-end-column="26" />
             </state>
           </provider>
@@ -115,8 +114,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1689" />
-    <option name="y" value="63" />
+    <option name="x" value="-1526" />
+    <option name="y" value="48" />
     <option name="width" value="1440" />
     <option name="height" value="852" />
   </component>
@@ -128,7 +127,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,6 +143,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -322,14 +321,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1689" y="63" width="1440" height="852" extended-state="0" />
+    <frame x="-1526" y="48" width="1440" height="852" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16842847" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25695366" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25695366" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -376,17 +376,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="21" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Offer/duplicate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/Offer/findMedianSortedArrays.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -697,15 +690,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Offer/twoSum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
+        <state relative-caret-position="720">
           <caret line="48" selection-start-line="48" selection-end-line="48" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="308" selection-start-line="308" selection-end-line="308" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Offer/sortDemo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state relative-caret-position="498">
+          <caret line="70" column="67" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="70" selection-end-column="67" />
         </state>
       </provider>
     </entry>
