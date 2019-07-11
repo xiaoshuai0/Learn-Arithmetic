@@ -82,7 +82,7 @@ class Solution(object):
             mid = low + ((high - low) >> 1)
             if nums[mid] > target: high = mid - 1
             elif nums[mid] < target: low = mid + 1
-            
+
 
 
 
