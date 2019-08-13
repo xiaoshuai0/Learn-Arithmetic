@@ -1,5 +1,5 @@
 class Solution:
-    # 简单粗暴的方式
+    # 简单粗暴的方式`
     def mypow1(self, x, n):
         if n < 0:
             x = 1 / x
@@ -39,5 +39,5 @@ class Solution:
 
 if __name__ == "__main__":
     print(Solution().mypow1(2, 10))
-    print(Solution().mypow2(2, 10))
+    print(Solution().mypow2(2, 7))
     print(Solution().mypow3(2, 9))

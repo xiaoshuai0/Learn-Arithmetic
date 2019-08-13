@@ -32,7 +32,7 @@ class Solution(object):
                 if i == 0: maxLeft = nums2[j - 1]
                 elif j == 0: maxLeft = nums1[i - 1]
                 else: maxLeft = max(nums1[i - 1], nums2[j - 1])
-                if (m + n) % 2 == 1: return maxLeft
+                if (m + n) & 1 == 1: return maxLeft
 
                 minRight = 0
                 if i == m: minRight = nums2[j]
