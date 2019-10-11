@@ -202,6 +202,23 @@ class Solution {
         }
         return isNegative ? -res : res
     }
+    /// 9. 回文数
+    func isPalindrome(_ x: Int) -> Bool {
+        if x < 0 {
+            return false
+        }
+        
+        let list = Array(String(x))
+        var (left, right) = (0, list.count - 1)
+        while left <= right {
+            if list[left] != list[right] {
+                return false
+            }
+            left += 1
+            right -= 1
+        }
+        return true
+    }
     /*20. 有效的括号*/
     func isValid(_ s: String) -> Bool {
 //        var stack: [String] = []
