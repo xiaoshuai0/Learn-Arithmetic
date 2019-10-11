@@ -13,7 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        let solution = Solution()
+        print(solution.longestPalindrome("babad"))
+        print(solution.convert("LEETCODEISHIRING", 3))
+        print(solution.reverse(-123))
     }
 
 }
