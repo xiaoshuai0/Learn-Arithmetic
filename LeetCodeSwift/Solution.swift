@@ -219,6 +219,225 @@ class Solution {
         }
         return true
     }
+    /// 11. 盛最多水的容器
+    func maxArea(_ height: [Int]) -> Int {
+    
+        if height.count < 2 {
+            return 0
+        }
+        var max_area = 0
+        var (left, right) = (0, height.count - 1)
+        while left < right {
+            let area = (height[left] > height[right] ? height[right] : height[left]) * (right - left)
+            max_area = max(area, max_area)
+            if height[left] > height[right] {
+                right -= 1
+            } else {
+                left += 1
+            }
+        }
+        return max_area
+    }
+    /// 12. 整数转罗马数字
+    func intToRoman(_ num: Int) -> String {
+        let I = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+        let X = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
+        let C = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
+        let M = ["", "M", "MM", "MMM"]
+        return "\(M[num / 1000])\(C[(num % 1000) / 100])\(X[(num % 100) / 10])\(I[num % 10])"
+    }
+    /// 13. 罗马数字转整数
+    func romanToInt(_ s: String) -> Int {
+        let roman = ["M": 1000, "D": 500, "C": 100, "L": 50, "X": 10, "V": 5, "I": 1]
+        var res = 0
+        let str = Array(s)
+        for i in 0..<str.count - 1 {
+            guard let cur = roman[String(str[i])], let last = roman[String(str[i + 1])] else {
+                return 0
+            }
+            if cur < last  {
+                res -= cur
+            } else {
+                res += cur
+            }
+        }
+        return res + (roman[String(str[str.count - 1])] ?? 0)
+    }
+    
+    /// 14. 最长公共前缀
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        if strs.count == 0 {
+            return ""
+        } else if strs.count == 1 {
+            return strs[0]
+        }
+        var temp = strs
+        temp.sort()
+        
+        var end = 0
+        guard let first = temp.first, let last = temp.last else {
+            return ""
+        }
+        let firstList = Array(first)
+        let lastList = Array(last)
+        while end < first.count {
+            if firstList[end] == lastList[end] {
+                end += 1
+            } else {
+                break
+            }
+        }
+        return String(firstList[0..<end])
+    }
+    /// 15. 三数之和
+    func threeSum(_ nums: [Int]) -> [[Int]] {
+        if nums.count < 3 {
+            return []
+        }
+        var res: [[Int]] = []
+        let nums = nums.sorted()
+        for (index, value) in nums.enumerated() {
+            if value > 0 { break }
+            if index > 0 && nums[index] == nums[index - 1] { continue }
+            var (left, right) = (index + 1, nums.count - 1)
+            while left < right {
+                let sum = value + nums[left] + nums[right]
+                if sum == 0 {
+                    res.append([value, nums[left], nums[right]])
+                    left += 1
+                    right -= 1
+                    while left < right && nums[left] == nums[left - 1] {
+                        left += 1
+                    }
+                    while left < right && nums[right] == nums[right + 1] {
+                        right -= 1
+                    }
+                } else if sum < 0 {
+                    left += 1
+                } else {
+                    right -= 1
+                }
+            }
+        }
+        return res
+    }
+    /// 16. 最接近的三数之和
+    func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
+        if nums.count < 3 { return 0 }
+        
+        let nums = nums.sorted()
+        var res: Int = nums[0] + nums[1] + nums[2]
+        
+        for (index, value) in nums.enumerated() {
+            if index > 0 && nums[index] == nums[index - 1] { continue }
+            var (left, right) = (index + 1, nums.count - 1)
+            while left < right {
+                let sum = value + nums[left] + nums[right]
+                if abs(target - sum) < abs(target - res) {
+                    res = sum
+                }
+                if sum > res {
+                    left += 1
+                } else if sum < res {
+                    right -= 1
+                } else {
+                    return res
+                }
+            }
+        }
+        return res
+    }
+    /// 17. 电话号码的字母组合
+    func letterCombinations(_ digits: String) -> [String] {
+          var combinations = [String](), combination = ""
+          
+          dfs(createBoard(), &combinations, &combination, Array(digits), 0)
+          
+          return combinations
+      }
+      
+      fileprivate func createBoard() -> [String] {
+          var res = [String]()
+    
+          res.append("")
+          res.append("")
+          res.append("abc")
+          res.append("def")
+          res.append("ghi")
+          res.append("jkl")
+          res.append("mno")
+          res.append("pqrs")
+          res.append("tuv")
+          res.append("wxyz")
+    
+          return res
+      }
+      
+      fileprivate func dfs(_ board: [String], _ combinations: inout [String], _ combination: inout String, _ digits: [Character], _ index: Int) {
+          if digits.count == index {
+              if combination != "" {
+                  combinations.append(String(combination))
+              }
+              
+              return
+          }
+          
+          let digitStr = board[Int(String(digits[index]))!]
+          
+          for digitChar in digitStr {
+              combination.append(digitChar)
+              dfs(board, &combinations, &combination, digits, index + 1)
+              combination.removeLast()
+          }
+    }
+    /// 18. 四数之和
+    func fourSum(_ nums: [Int], _ target: Int) -> [[Int]] {
+        if nums.count < 4 { return [] }
+        let nums = nums.sorted()
+        var res: [[Int]] = []
+        for index in 0 ..< nums.count - 1 {
+            if index != 0 && nums[index] == nums[index - 1] { continue }
+            for index_two in index + 1 ..< nums.count {
+                if index_two != index + 1 && nums[index_two] == nums[index_two - 1] { continue }
+                var left = index_two + 1, right = nums.count - 1
+                while left < right {
+                    let sum = nums[index] + nums[index_two] + nums[left] + nums[right]
+                    if sum == target {
+                        res.append([nums[index], nums[index_two], nums[left], nums[right]])
+                        left += 1; right -= 1
+                        while left < right && nums[left] == nums[left - 1] {
+                            left += 1
+                        }
+                        while left < right && nums[right] == nums[right + 1] {
+                            right -= 1
+                        }
+                    } else if sum < target {
+                        left += 1
+                    } else {
+                        right -= 1
+                    }
+                }
+            }
+        }
+        return res
+    }
+    /// 19. 删除链表的倒数第N个节点
+    func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+        let dummy = ListNode(0)
+        dummy.next = head
+        
+        var pre: ListNode? = dummy
+        var fast: ListNode? = dummy
+        for _ in 1...n {
+            fast = fast?.next
+        }
+        while fast != nil && fast!.next != nil {
+            fast = fast?.next
+            pre = pre?.next
+        }
+        pre?.next = pre?.next?.next
+        return dummy.next
+    }
     /*20. 有效的括号*/
     func isValid(_ s: String) -> Bool {
 //        var stack: [String] = []
@@ -242,5 +461,221 @@ class Solution {
             }
         }
         return lastLength == 0
+    }
+    /// 21. 合并两个有序链表
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        let dummy = ListNode(0)
+        var current: ListNode? = dummy
+        var l1 = l1, l2 = l2
+        while l1 != nil && l2 != nil {
+            if l1!.val < l2!.val {
+                current?.next = l1
+                l1 = l1?.next
+            } else {
+                current?.next = l2
+                l2 = l2?.next
+            }
+            current = current?.next
+            
+        }
+        if l1 != nil {
+            current?.next = l1
+        } else {
+            current?.next = l2
+        }
+        return dummy.next
+    }
+    
+    /// 22. 括号生成
+    func generateParenthesis(_ n: Int) -> [String] {
+        var res: [String] = []
+        generateParenthesis_helper(n: n, str: "", left: 0, right: 0, res: &res)
+        return res
+    }
+    
+    fileprivate func generateParenthesis_helper(n: Int, str: String, left: Int = 0, right: Int, res: inout [String]) {
+        if str.count == n * 2 {
+            res.append(str)
+            return
+        }
+        
+        if left < n {
+            generateParenthesis_helper(n: n, str: "\(str)(", left: left + 1, right: right, res: &res)
+        }
+        
+        if right < left {
+            generateParenthesis_helper(n: n, str: "\(str))", left: left, right: right + 1, res: &res)
+        }
+    }
+    
+    /// 23. 合并K个排序链表
+    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+        var lists: [ListNode?] = lists
+        var count = lists.count, interval = 1
+        while interval < count {
+            for i in stride(from: 0, to: count - interval, by: interval * 2) {
+                lists[i] = self.mergeTwoLists(lists[i], lists[i + interval])
+            }
+            interval *= 2
+        }
+        return count > 0 ? lists[0] : nil
+    }
+    
+    /// 24. 两两交换链表中的节点
+    func swapPairs(_ head: ListNode?) -> ListNode? {
+        if head == nil || head?.next == nil {
+            return head
+        }
+        let next = head!.next
+        head?.next = swapPairs(next?.next)
+        next?.next = head
+        return next
+    }
+    
+    /// 25. K 个一组翻转链表
+//    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+//
+//    }
+    /// 26. 删除排序数组中的重复项
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+       
+        var start = 0
+        for index in 1..<nums.count {
+            if nums[index] != nums[start] {
+                start += 1
+            }
+            nums[index] = nums[start]
+        }
+        return start + 1
+    }
+    
+    
+    
+    /// 29. 两数相除
+    func divide(_ dividend: Int, _ divisor: Int) -> Int {
+        var sign = false
+        if (divisor > 0 && dividend > 0) || (divisor < 0 && dividend < 0){
+            sign = true
+        }
+        var dividend = abs(dividend)
+        var divisor = abs(divisor)
+        var count = 0
+        while dividend >= divisor {
+            count += 1
+            divisor <<= 1
+        }
+        var res = 0
+        while count > 0 {
+            count -= 1
+            divisor >>= 1
+            if divisor <= dividend {
+                res += 1 << count
+                dividend -= divisor
+            }
+        }
+        if !sign {
+            res = -res
+        }
+        return res
+    }
+    
+    /// 33. 搜索旋转排序数组
+    func search(_ nums: [Int], _ target: Int) -> Int {
+        var start = 0, end = nums.count - 1
+        while start < end {
+            let mid = start + (end - start) >> 1
+            if nums[mid] > nums[end] {
+                start = mid + 1
+            } else {
+                end = mid
+            }
+        }
+        let offSet = start
+        start = 0
+        end = nums.count - 1
+        while start <= end {
+            let mid = start + (end - start) >> 1
+            let mid_change = (mid + offSet) % nums.count
+            if target == nums[mid_change] {
+                return mid_change
+            } else if target < nums[mid_change] {
+                end = mid - 1
+            } else {
+                start = mid + 1
+            }
+        }
+        return -1
+    }
+    
+    /// 34. 在排序数组中查找元素的第一个和最后一个位置
+    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+//        var start = 0, end = nums.count - 1
+//        while start <= end {
+//            let mid = start + (end - start) >> 1
+//            if nums[mid] == target {
+//                var left = mid, right = mid
+//                while left > 0 && nums[left] == nums[left - 1] {
+//                    left -= 1
+//                }
+//                while right < nums.count - 1 && nums[right] == nums[right + 1] {
+//                    right += 1
+//                }
+//                return [left, right]
+//            } else if nums[mid] > target {
+//                end = mid - 1
+//            } else {
+//                start = mid + 1
+//            }
+//        }
+//        return [-1, -1]
+        let leftIndex = extremeInsertionIndex(nums, target: target, left: true)
+        if leftIndex == nums.count || nums[leftIndex] != target {
+            return [-1, -1]
+        }
+        let rightIndex = extremeInsertionIndex(nums, target: target)
+        return [leftIndex, rightIndex]
+    }
+    
+    func extremeInsertionIndex(_ nums: [Int], target: Int, left: Bool = false) -> Int{
+        var lo: Int = 0, high: Int = nums.count
+        
+        while lo < high {
+            let mid = lo + (high - lo) >> 1
+            if nums[mid] > target || (left && nums[mid] == target) {
+                high = mid
+            } else {
+                lo = mid + 1
+            }
+        }
+        return lo
+    }
+    
+    /// 35. 搜索插入位置
+    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+        var left = 0, right = nums.count - 1
+        while left <= right {
+            let mid = left + (right - left) >> 1
+            if nums[mid] == target {
+                return mid
+            } else if nums[mid] > target {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        }
+        return left
+    }
+    
+    func mySqrt(_ x: Int) -> Int {
+        var low = 0, high = x, mid = x / 2
+        while low <= high && mid * mid != x  {
+            if mid * mid < x {
+                low = mid + 1
+            } else {
+                high = mid - 1
+            }
+            mid = low + ((high - low) >> 1)
+        }
+        return mid
     }
 }

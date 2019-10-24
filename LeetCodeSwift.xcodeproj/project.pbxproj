@@ -15,6 +15,8 @@
 		DC21DADB234EC416006B1762 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC21DAD9234EC416006B1762 /* LaunchScreen.storyboard */; };
 		DC21DAE6234EC416006B1762 /* LeetCodeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC21DAE5234EC416006B1762 /* LeetCodeSwiftTests.swift */; };
 		DC21DAF1234EC519006B1762 /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC21DAF0234EC519006B1762 /* Solution.swift */; };
+		DC9113F1235FF72500756D06 /* BSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9113F0235FF72500756D06 /* BSearch.swift */; };
+		DCA1443A23584DEF00DCF7EE /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1443923584DEF00DCF7EE /* Sort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		DC21DAE5234EC416006B1762 /* LeetCodeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeetCodeSwiftTests.swift; sourceTree = "<group>"; };
 		DC21DAE7234EC416006B1762 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC21DAF0234EC519006B1762 /* Solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
+		DC9113F0235FF72500756D06 /* BSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSearch.swift; sourceTree = "<group>"; };
+		DCA1443923584DEF00DCF7EE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				DC21DAF0234EC519006B1762 /* Solution.swift */,
+				DCA1443923584DEF00DCF7EE /* Sort.swift */,
 				DC21DACE234EC415006B1762 /* AppDelegate.swift */,
 				DC21DAD0234EC415006B1762 /* SceneDelegate.swift */,
 				DC21DAD2234EC415006B1762 /* ViewController.swift */,
@@ -89,6 +94,7 @@
 				DC21DAD7234EC416006B1762 /* Assets.xcassets */,
 				DC21DAD9234EC416006B1762 /* LaunchScreen.storyboard */,
 				DC21DADC234EC416006B1762 /* Info.plist */,
+				DC9113F0235FF72500756D06 /* BSearch.swift */,
 			);
 			path = LeetCodeSwift;
 			sourceTree = "<group>";
@@ -203,9 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9113F1235FF72500756D06 /* BSearch.swift in Sources */,
 				DC21DAD3234EC415006B1762 /* ViewController.swift in Sources */,
 				DC21DACF234EC415006B1762 /* AppDelegate.swift in Sources */,
 				DC21DAF1234EC519006B1762 /* Solution.swift in Sources */,
+				DCA1443A23584DEF00DCF7EE /* Sort.swift in Sources */,
 				DC21DAD1234EC415006B1762 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

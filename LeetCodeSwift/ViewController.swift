@@ -17,6 +17,26 @@ class ViewController: UIViewController {
         print(solution.longestPalindrome("babad"))
         print(solution.convert("LEETCODEISHIRING", 3))
         print(solution.reverse(-123))
+        print(solution.longestCommonPrefix(["flower","alow","blight"]))
+        print(solution.threeSum([-1, 0, 1, 2, -1, -4]))
+        print(solution.letterCombinations("23"))
+        print(solution.fourSum([0, 0, 0, 0], 0))
+        print(solution.divide(8, 5))
+        print(solution.search([4, 5, 6, 0, 1, 2, 3], 4))
+        print(solution.searchRange([1, 1, 2, 2, 3, 3, 4, 4], 2))
+        print(solution.searchInsert([1, 3, 5, 6], 7))
+//        print([2, 5, 1, 6, 8, 7, 3].quickSort())
+//        print([2, 5, 1, 6, 8, 7, 3].mergeSort())
+//        print([2, 5, 1, 6, 8, 7, 3].bubbleSort())
+//        print([2, 5, 1, 6, 8, 7, 3].insertSort())
+//        print([2, 5, 1, 6, 8, 7, 3].selectSort())
+//        print(solution.generateParenthesis(3))
+//        print(solution.mySqrt(9))
+//
+//        // 二分查找
+//        print(BSearch.bSearch(nums: [2, 5, 8, 8, 10, 20], target: 20))
+//        print(BSearch.bSearchFirst(nums: [2, 5, 8, 8, 8, 8, 8, 10, 20], target: 8))
+//        print(BSearch.bSearchLast(nums: [2, 5, 8, 8, 8, 8, 8, 10, 20], target: 8))
     }
 
 }
