@@ -25,6 +25,23 @@ class ViewController: UIViewController {
         print(solution.search([4, 5, 6, 0, 1, 2, 3], 4))
         print(solution.searchRange([1, 1, 2, 2, 3, 3, 4, 4], 2))
         print(solution.searchInsert([1, 3, 5, 6], 7))
+        print(solution.myPow(2, 10))
+        print(solution.searchMatrix([
+          [1,   3,  5,  7],
+          [10, 11, 16, 20],
+          [23, 30, 34, 50]
+        ], 13))
+        print(solution.bSearchMatrix([
+          [1,   3,  5,  7],
+          [10, 11, 16, 20],
+          [23, 30, 34, 50]
+        ], 13))
+//        print(solution.trap([0,1,0,2,1,0,1,3,2,1,2,1]))
+        print(solution.trap([4,2,3]))
+        print(solution.strStr("", "pi"))
+        let date = Date().timeIntervalSince1970
+        print(solution.longestValidParentheses("())"))
+        print(Date().timeIntervalSince1970 - date)
 //        print([2, 5, 1, 6, 8, 7, 3].quickSort())
 //        print([2, 5, 1, 6, 8, 7, 3].mergeSort())
 //        print([2, 5, 1, 6, 8, 7, 3].bubbleSort())

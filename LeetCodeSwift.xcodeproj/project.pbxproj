@@ -17,6 +17,8 @@
 		DC21DAF1234EC519006B1762 /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC21DAF0234EC519006B1762 /* Solution.swift */; };
 		DC9113F1235FF72500756D06 /* BSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9113F0235FF72500756D06 /* BSearch.swift */; };
 		DCA1443A23584DEF00DCF7EE /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1443923584DEF00DCF7EE /* Sort.swift */; };
+		DCAC1BEB23851C9F00029265 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAC1BEA23851C9F00029265 /* Practice.swift */; };
+		DCAC1BED23867DC800029265 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAC1BEC23867DC800029265 /* Tree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		DC21DAF0234EC519006B1762 /* Solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
 		DC9113F0235FF72500756D06 /* BSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSearch.swift; sourceTree = "<group>"; };
 		DCA1443923584DEF00DCF7EE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		DCAC1BEA23851C9F00029265 /* Practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
+		DCAC1BEC23867DC800029265 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				DC21DAD9234EC416006B1762 /* LaunchScreen.storyboard */,
 				DC21DADC234EC416006B1762 /* Info.plist */,
 				DC9113F0235FF72500756D06 /* BSearch.swift */,
+				DCAC1BEA23851C9F00029265 /* Practice.swift */,
+				DCAC1BEC23867DC800029265 /* Tree.swift */,
 			);
 			path = LeetCodeSwift;
 			sourceTree = "<group>";
@@ -211,8 +217,10 @@
 			files = (
 				DC9113F1235FF72500756D06 /* BSearch.swift in Sources */,
 				DC21DAD3234EC415006B1762 /* ViewController.swift in Sources */,
+				DCAC1BEB23851C9F00029265 /* Practice.swift in Sources */,
 				DC21DACF234EC415006B1762 /* AppDelegate.swift in Sources */,
 				DC21DAF1234EC519006B1762 /* Solution.swift in Sources */,
+				DCAC1BED23867DC800029265 /* Tree.swift in Sources */,
 				DCA1443A23584DEF00DCF7EE /* Sort.swift in Sources */,
 				DC21DAD1234EC415006B1762 /* SceneDelegate.swift in Sources */,
 			);

@@ -15,6 +15,7 @@ public class ListNode {
         self.next = nil
     }
 }
+
 class Solution {
     /// 1. 两数之和
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
@@ -550,7 +551,22 @@ class Solution {
     }
     
     
-    
+    /// 28. 实现 strStr()
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+        if haystack == needle {
+            return 0
+        }
+        if haystack.count == 0 || haystack.count < needle.count {
+            return -1
+        }
+        for i in 0..<(haystack.count - needle.count + 1) {
+            let subString = String(haystack[haystack.index(haystack.startIndex, offsetBy: i)..<haystack.index(haystack.startIndex, offsetBy: i + needle.count)])
+            if subString == needle {
+                return i
+            }
+        }
+        return -1
+    }
     /// 29. 两数相除
     func divide(_ dividend: Int, _ divisor: Int) -> Int {
         var sign = false
@@ -578,7 +594,51 @@ class Solution {
         }
         return res
     }
-    
+    /// 32. 最长有效括号
+    func longestValidParentheses(_ s: String) -> Int {
+//        if s.count < 2 {
+//            return 0
+//        }
+//        var maxLength = 0
+//        for i in 0..<s.count {
+//            for j in stride(from: i + 2, through: s.count, by: 2) {
+//                if isValidParentheses(s: String(s[s.index(s.startIndex, offsetBy: i)..<s.index(s.startIndex, offsetBy: j)])) {
+//                    maxLength = max(maxLength, j - i)
+//                }
+//            }
+//        }
+//        return maxLength
+        var maxLength = 0
+        var stack: [Int] = []
+        stack.append(-1)
+        for (i, value) in s.enumerated() {
+            if value == "(" {
+                stack.append(i)
+            } else {
+                stack.removeLast()
+                if stack.isEmpty {
+                    stack.append(i)
+                } else {
+                    maxLength = max(maxLength, i - stack.last!)
+                }
+            }
+        }
+        return maxLength
+    }
+    fileprivate func isValidParentheses(s: String) -> Bool {
+        var stack: [String] = []
+        for (_, value) in s.enumerated() {
+            if value == "(" {
+                stack.append("(")
+            } else if !stack.isEmpty && value == ")" {
+                stack.removeLast()
+            } else {
+                return false
+            }
+        }
+        return stack.isEmpty
+    }
+
     /// 33. 搜索旋转排序数组
     func search(_ nums: [Int], _ target: Int) -> Int {
         var start = 0, end = nums.count - 1
@@ -665,7 +725,77 @@ class Solution {
         }
         return left
     }
+    /// 42. 接雨水
+    func trap(_ height: [Int]) -> Int {
+        if height.count <= 1 {
+            return 0
+        }
+        var max = height[0], maxIndex = 0, res = 0
+        // 获取到最大值所在的下标
+        for (index, value) in height.enumerated() {
+            if value >= max {
+                max = value
+                maxIndex = index
+            }
+        }
+        // 获取最大值左边雨量
+        max = height[0]
+        for i in 0..<maxIndex {
+            if height[i] < max {
+                res += max - height[i]
+            } else {
+                max = height[i]
+            }
+        }
+        // 获取最大值右边的雨量
+        max = height[height.count - 1]
+        for i in stride(from: height.count - 1, to: maxIndex, by: -1) {
+            if height[i] < max {
+                res += max - height[i]
+            } else {
+                max = height[i]
+            }
+        }
+        return res
+    }
     
+    /// 50.Pow(x, n)
+    func myPow(_ x: Double, _ n: Int) -> Double {
+        var x = x, n = n
+        if n < 0 {
+            n = -n
+            x = 1 / x
+        }
+        var res: Double = 1
+        
+        // 方法1:
+//        for _ in 0..<n {
+//            res *= x
+//        }
+//        return res
+        while n > 0 {
+            if n & 1 == 1 {
+                res *= x
+            }
+            x *= x
+            print("x: \(x) res: \(res) count: \(n)")
+            n = n >> 1
+        }
+        return res
+//        return fastPow(x: x, n: n)
+    }
+    
+    func fastPow(x: Double, n: Int) -> Double {
+        if n == 0 {
+            return 1.0
+        }
+        let half = fastPow(x: x, n: n / 2)
+        if n & 1 == 0 {
+            return half * half
+        } else {
+            return half * half * x
+        }
+    }
     func mySqrt(_ x: Int) -> Int {
         var low = 0, high = x, mid = x / 2
         while low <= high && mid * mid != x  {
@@ -677,5 +807,42 @@ class Solution {
             mid = low + ((high - low) >> 1)
         }
         return mid
+    }
+    /// 74. 搜索二维矩阵
+    func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
+        guard matrix.count > 0, var col = matrix.first?.count else {
+            return false
+        }
+        col -= 1
+        var row = 0
+        while col >= 0 && row < matrix.count {
+            if matrix[row][col] == target {
+                return true
+            } else if matrix[row][col] > target {
+                col -= 1
+            } else {
+                row += 1
+            }
+        }
+        return false
+    }
+    
+    func bSearchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
+        guard matrix.count > 0, let col = matrix.first?.count else {
+            return false
+        }
+        var left = 0, right = matrix.count * col - 1
+        while left <= right {
+            let mid = left + (right - left) >> 1
+            let element = matrix[mid / col][mid % col]
+            if element == target {
+                return true
+            } else if element > target {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        }
+        return false
     }
 }
